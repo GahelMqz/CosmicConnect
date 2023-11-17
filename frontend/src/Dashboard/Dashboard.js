@@ -5,8 +5,6 @@ import '../css/dashboard.css';
 
 
 function Dashboard() {
-<<<<<<< HEAD
-=======
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [users, setUsers] = useState([]);
@@ -20,7 +18,7 @@ function Dashboard() {
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         } else {
-            navigate('/login'); // Redirigir al login si no hay usuario
+            //navigate('/login');  Redirigir al login si no hay usuario
         }
         fetchUsers();
     }, [navigate]);
@@ -80,14 +78,13 @@ function Dashboard() {
         setShowUserMenu(!showUserMenu);
     };
 
->>>>>>> f6830ad (back)
     return (
         <>
             <body className='body-dashboard'>
 
                 {user && (
                     <div className="user-info" onClick={toggleUserMenu} style={{ position: 'absolute', top: 0, right: 0 }}>
-                        <img src={user.picture} alt={user.name} style={{ cursor: 'pointer' }} />
+                        <img src={user.picture} alt={user.name} />
                         {showUserMenu && (
                             <div className="user-menu">
                                 <button onClick={logOut}>Logout</button>
@@ -108,11 +105,7 @@ function Dashboard() {
                         </div>
                         <div className='container-menu-dashboard'>
                             <div className='menu-section'>
-<<<<<<< HEAD
-                                <Link to="/dashboard"><svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></Link>
-=======
                                 <Link to="/dashboard"><svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg></Link>
->>>>>>> f6830ad (back)
                                 <p className='p-left'><Link to="/dashboard" className='link-dashboard'>Inicio</Link></p>
                             </div>
                             <div className='menu-section'>
@@ -120,25 +113,12 @@ function Dashboard() {
                                 <p className='p-left'><Link to="/dashboard/usuarios" className='link-dashboard'>Usuarios</Link></p>
                             </div>
                             <div className='menu-section'>
-<<<<<<< HEAD
-                                <Link to="/dashboard/noticias"><svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16c0 1.1.9 2 2 2h12a2 2 0 0 0 2-2V8l-6-6z" /><path d="M14 3v5h5M16 13H8M16 17H8M10 9H8" /></svg></Link>
-                                <p className='p-left'><Link to="/dashboard/noticias" className='link-dashboard'>Noticias</Link></p>
-                            </div>
-                            <div className='menu-section'>
-                                <Link to="/dashboard/estrellas"><svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg></Link>
-                                <p className='p-left'><Link to="/dashboard/estrellas" className='link-dashboard'>Estrellas</Link></p>
-                            </div>
-                            <div className='menu-section'>
-                                <Link to="/dashboard/imagenes"><svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="M20.4 14.5L16 10 4 20" /></svg></Link>
-                                <p className='p-left'><Link to="/dashboard/imagenes" className='link-dashboard'>Imágenes</Link></p>
-=======
                                 <svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
                                 <p className='p-left'>Test</p>
                             </div>
                             <div className='menu-section'>
                                 <svg className='svg-icons' xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24" fill="none" stroke="#F5D5E0" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path></svg>
                                 <p className='p-left'>Test</p>
->>>>>>> f6830ad (back)
                             </div>
                         </div>
                     </aside>
@@ -148,7 +128,7 @@ function Dashboard() {
                             <div className='section-sub-one'>
                                 <div className='section-mini-one-dashboard'>
                                     <div>
-                                        <h1 className='h1-dashboard'>¡Bienvenido usuario!</h1>
+                                        <h1 className='h1-dashboard'>¡Bienvenido {user.name}!</h1>
                                         <p className='p-left'>Tu panel de control central: Datos importantes, a un vistazo</p>
                                     </div>
                                     <div className='container-btn-home-dashboard'>

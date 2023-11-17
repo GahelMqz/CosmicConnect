@@ -17,10 +17,7 @@ import SkyObjects from './Apis/Sky';
 import Nasa from './Apis/Nasa';
 import SpaceX from './Apis/Space_X1';
 import SpaceXData from './Apis/Space_X';
-<<<<<<< HEAD
-=======
 import SubirPublicacion from './Dashboard/Subirpublicacion';
->>>>>>> f6830ad (back)
 import Dashboard_usuarios from './Dashboard/Dashboard_usuarios';
 
 

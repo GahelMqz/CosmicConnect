@@ -128,7 +128,7 @@ function Dashboard() {
                             <div className='section-sub-one'>
                                 <div className='section-mini-one-dashboard'>
                                     <div>
-                                        <h1 className='h1-dashboard'>¡Bienvenido {user.name}!</h1>
+                                        <h1 className='h1-dashboard'>¡Bienvenido !</h1>
                                         <p className='p-left'>Tu panel de control central: Datos importantes, a un vistazo</p>
                                     </div>
                                     <div className='container-btn-home-dashboard'>

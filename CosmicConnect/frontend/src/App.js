@@ -51,7 +51,7 @@ function App() {
         <Route path='/nasa' element={<Nasa />}></Route>
         <Route path='/space1' element={<SpaceX />}></Route>
         <Route path='/publicacion' element={<SubirPublicacion />}></Route>
-        <Route path='/dashu' element={<Dashboard_usuarios />}></Route>
+        <Route path='/dashboard/usuarios' element={<Dashboard_usuarios />}></Route>
         <Route path='/dashpub' element={<DashboardPub />}></Route>
         <Route path='/dashnot' element={<Dash_Noticias />}></Route>
         <Route path='/dashplan' element={<Dash_Planetas />}></Route>

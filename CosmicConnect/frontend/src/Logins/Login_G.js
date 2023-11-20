@@ -24,7 +24,7 @@ function Login_G() {
                 })
                 .then((res) => {
                     localStorage.setItem('user', JSON.stringify(res.data)); // Almacenar usuario en localStorage
-                    navigate('/dashu'); // Redirigir al Dashboard
+                    navigate('/dashboard'); // Redirigir al Dashboard
                 })
                 .catch((err) => console.log(err));
         }

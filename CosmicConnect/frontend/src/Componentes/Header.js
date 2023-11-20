@@ -23,7 +23,7 @@ function Header() {
                 <li className="center"><Link to="/galaxias">Galaxias</Link></li>
                 <li className="center"><Link to="/nosotros">Nosotros</Link></li>
                 <li className="center"><Link to="/contactanos">Contáctanos</Link></li>
-                <li className="center"><Link to="/dashu">Dashboard</Link></li>
+                <li className="center"><Link to="/dashboard">Dashboard</Link></li>
 
                 {isUserLoggedIn ? (
                     <button onClick={handleLogout} className="btn-login">

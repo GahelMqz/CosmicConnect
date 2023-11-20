@@ -161,6 +161,7 @@ function Dashboard_usuarios() {
             // Redirige a los usuarios "cliente" lejos de "/dashu"
             //navigate('/');
         //}
+        fetchUsers();
     }, []);
     
 

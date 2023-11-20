@@ -54,7 +54,6 @@ app.post('/subir-publicacion', upload.single('imagen'), (req, res) => {
 });
 
 // Publicaciones
-
 app.get('/obtener-publicaciones', (req, res) => {
     const query = 'SELECT * FROM publicaciones ORDER BY fecha_publicacion DESC';
     conexion.query(query, (err, results) => {
@@ -66,17 +65,15 @@ app.get('/obtener-publicaciones', (req, res) => {
     });
 });
 
-
 //Noticias
-
 app.post('/subir-noticia', upload.single('imagen'), (req, res) => {
-
-    const comentario = req.body.comentario;
+    const titulo = req.body.titulo;
     const imagenUrl = req.file.path
+    const comentario = req.body.comentario;
 
     // Insertar en la base de datos
-    const query = 'INSERT INTO noticias (imagen, comentario) VALUES (?, ?)';
-    conexion.query(query, [imagenUrl, comentario], (err, results) => {
+    const query = 'INSERT INTO noticias (titulo, imagen, comentario) VALUES (?, ?, ?)';
+    conexion.query(query, [titulo, imagenUrl, comentario], (err, results) => {
         if (err) {
             res.status(500).send('Error en el servidor: ' + err.message);
             return;
@@ -84,7 +81,6 @@ app.post('/subir-noticia', upload.single('imagen'), (req, res) => {
         res.status(201).send('Noticia creada con éxito');
     });
 });
-
 
 app.get('/obtener-noticias', (req, res) => {
     const query = 'SELECT * FROM noticias ORDER BY fecha_publicacion DESC';
@@ -96,6 +92,20 @@ app.get('/obtener-noticias', (req, res) => {
         res.status(200).json(results);
     });
 });
+
+app.delete('/eliminar-noticia/:id', (req, res) => {
+    const idNoticia = req.params.id;
+
+    const query = 'DELETE FROM noticias WHERE id = ?';
+    conexion.query(query, [idNoticia], (err, results) => {
+        if (err) {
+            res.status(500).send('Error en el servidor: ' + err.message);
+            return;
+        }
+        res.status(200).send('Noticia eliminada con éxito');
+    });
+});
+
 
 //Planetas
 

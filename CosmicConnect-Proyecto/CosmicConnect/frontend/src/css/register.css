@@ -1,0 +1,76 @@
+.body-register {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: url('../imgs/planeta-register.jpg') no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+
+.wrapper .remember-forgot-register {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14.5px;
+    margin: -15px 0 15px;
+}
+
+.remember-forgot-register label input {
+    accent-color: #F5D5E0;
+    margin-right: 3px;
+
+}
+
+.remember-forgot-register a {
+    color: #F5D5E0;
+    text-decoration: none;
+}
+
+.remember-forgot-register a:hover {
+    text-decoration: underline;
+    color: #071952;
+}
+
+.wrapper .btn-register {
+    width: 100%;
+    height: 45px;
+    background: #D5E0F5;
+    border: none;
+    outline: none;
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    font-size: 16px;
+    color: #071952;
+    font-weight: 600;
+}
+
+.wrapper .btn-register:hover {
+    color: #D5E0F5;
+    background-color: #071952;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.wrapper .btn-register:not(hover) {
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+
+.wrapper .register-link-register {
+    font-size: 14.5px;
+    text-align: center;
+    margin: 20px 0 15px;
+
+}
+
+.register-link-register p a {
+    color: #F5D5E0;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.register-link-register p a:hover {
+    text-decoration: underline;
+    color: #071952;
+}

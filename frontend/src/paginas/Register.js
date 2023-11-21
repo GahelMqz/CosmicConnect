@@ -11,7 +11,6 @@ function Register() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-    
         try {
             const response = await fetch('http://localhost:8081/register', {
                 method: 'POST',
@@ -20,19 +19,55 @@ function Register() {
                 },
                 body: JSON.stringify({ nombre, email, contrasena }),
             });
-    
+
             if (response.ok) {
-                alert('Registro exitoso');
-                history('/login'); // Cambiar a llamada de función para la redirección
+                toast.success('Registro exitoso', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
+                setNombre('');
+                setEmail('');
+                setContrasena('');
+                //history('/login');
             } else {
-                alert('Error en el registro');
+                toast.error('Error en el registro', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     }
-    
-    
+
+
 
     return (
         <>

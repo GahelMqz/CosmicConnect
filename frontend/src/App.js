@@ -51,11 +51,10 @@ function App() {
         <Route path='/nasa' element={<Nasa />}></Route>
         <Route path='/space1' element={<SpaceX />}></Route>
         <Route path='/publicacion' element={<SubirPublicacion />}></Route>
-        <Route path='/dashboard/usuarios' element={<Dashboard_usuarios />}></Route>
         <Route path='/dashpub' element={<DashboardPub />}></Route>
-        <Route path='/dashnot' element={<Dash_Noticias />}></Route>
-        <Route path='/dashplan' element={<Dash_Planetas />}></Route>
-        <Route path='/dashgalx' element={<Dash_Galaxias />}></Route>
+        <Route path='/dashboard/noticias' element={<Dash_Noticias />}></Route>
+        <Route path='/dashboard/planetas' element={<Dash_Planetas />}></Route>
+        <Route path='/dashboard/galaxias' element={<Dash_Galaxias />}></Route>
         <Route path='/noticias' element={<Noticias />}></Route>
         <Route path='/planetas' element={<Planetas />}></Route>
         <Route path='/galaxias' element={<Galaxias />}></Route>

@@ -125,7 +125,7 @@ app.post('/subir-noticia', upload.single('imagen'), (req, res) => {
 });
 
 app.get('/obtener-noticias', (req, res) => {
-    const query = 'SELECT * FROM noticias ORDER BY fecha_publicacion DESC';
+    const query = 'SELECT noticias.*, usuarios.nombre AS nombre_usuario FROM noticias LEFT JOIN usuarios ON noticias.usuario_id = usuarios.id ORDER BY fecha_publicacion DESC';
     conexion.query(query, (err, results) => {
         if (err) {
             res.status(500).send('Error en el servidor: ' + err.message);
@@ -134,6 +134,7 @@ app.get('/obtener-noticias', (req, res) => {
         res.status(200).json(results);
     });
 });
+
 
 app.delete('/eliminar-noticia/:id', (req, res) => {
     const idNoticia = req.params.id;

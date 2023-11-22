@@ -124,7 +124,7 @@ function SubirPlanetas() {
                 />
 
                 <div className='temp'>
-                    <Aside/>
+                    <Aside />
                     <div className='prueba'>
                         <div class="section-one-dashboard">
                             <div className='section-sub-one'>
@@ -151,49 +151,57 @@ function SubirPlanetas() {
                         <div class="section-two-dashboard">
                             <div className='section-sub-two-dashboard-usuarios'>
 
-                                <div>
-                                    <form onSubmit={handleSubmit} encType="multipart/form-data">
-                                        <div>
-                                            <label htmlFor="imagen">Imagen:</label>
+                                <div className="content">
+                                    <form className="user-form" onSubmit={handleSubmit} encType="multipart/form-data">
+                                        <div className='input-box-dashboard'>
                                             <input
                                                 type="file"
-                                                id="imagen"
+                                                placeholder="Imagen"
                                                 accept="image/*"
                                                 onChange={handleImageChange}
+                                                required
                                             />
                                         </div>
-                                        <div>
-                                            <label htmlFor="comentario">Comentario:</label>
-                                            <textarea
-                                                id="comentario"
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="text"
+                                                placeholder="Descripción"
                                                 value={comentario}
                                                 onChange={(e) => setComentario(e.target.value)}
+                                                required
                                             />
                                         </div>
-                                        <button type="submit">Subir Planeta</button>
+                                        {isEditing ? (
+                                            <button className='btn-dashboard-usuarios-guardar' type="button" onClick={saveChanges}>Guardar Cambios</button>
+                                        ) : (
+                                            <button className='btn-dashboard-usuarios-agregar' type="submit">Agregar noticia</button>
+                                        )}
+
                                     </form>
-                                    <table>
+                                    <table className="user-table">
                                         <thead>
-                                            {/* ... */}
+                                            <tr>
+                                                <th>Nombre</th>
+                                                <th>Descripción</th>
+                                                <th>Fecha</th>
+                                                <th>Imagen</th>
+                                                <th>Acciones</th>
+                                            </tr>
                                         </thead>
                                         <tbody>
                                             {publicaciones.map((planeta, index) => (
                                                 <tr key={index}>
-                                                    <td>
-                                                        {/* Imagen */}
-                                                    </td>
-                                                    <td>
-                                                        {isEditing && editingId === planeta.id ? (
-                                                            <button onClick={saveChanges}>Guardar Cambios</button>
-                                                        ) : (
-                                                            <>
-                                                                <button onClick={() => startEdit(planeta)}>Editar</button>
-                                                                <button onClick={() => handleDelete(planeta.id)}>Eliminar</button>
-                                                            </>
-                                                        )}
-                                                    </td>
+                                                    <td>Nombre</td>
                                                     <td>{planeta.comentario}</td>
                                                     <td>{new Date(planeta.fecha_publicacion).toLocaleDateString()}</td>
+                                                    <td>
+                                                        {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
+                                                        <img src={`http://localhost:8081/${planeta.imagen}`} alt="Imagen" style={{ width: '100px' }} />
+                                                    </td>
+                                                    <td>
+                                                        <button className="btn-dashboard-usuarios-editar" onClick={() => startEdit(planeta)}>Editar</button>
+                                                        <button className="btn-dashboard-usuarios-eliminar" onClick={() => handleDelete(planeta.id)}>Eliminar</button>
+                                                    </td>
                                                 </tr>
                                             ))}
                                         </tbody>

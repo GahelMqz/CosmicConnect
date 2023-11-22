@@ -153,26 +153,25 @@ function SubirGalaxias() {
                         <div class="section-two-dashboard">
                             <div className='section-sub-two-dashboard-usuarios'>
 
-                                <div>
-                                    <form onSubmit={handleSubmit} encType="multipart/form-data">
-                                        <div>
-                                            <label htmlFor="imagen">Imagen:</label>
+                                <div className="content">
+                                    <form className="user-form" onSubmit={handleSubmit} encType="multipart/form-data">
+                                        <div className='input-box-dashboard'>
                                             <input
                                                 type="file"
-                                                id="imagen"
                                                 accept="image/*"
                                                 onChange={handleImageChange}
                                             />
                                         </div>
-                                        <div>
-                                            <label htmlFor="comentario">Comentario:</label>
-                                            <textarea
-                                                id="comentario"
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="text"
+                                                placeholder="Descripción"
                                                 value={comentario}
                                                 onChange={(e) => setComentario(e.target.value)}
+                                                required
                                             />
                                         </div>
-                                        <button type="submit">Subir galaxia</button>
+                                        <button type="submit">Agregar galaxia</button>
                                     </form>
                                     <table>
                                         <thead>

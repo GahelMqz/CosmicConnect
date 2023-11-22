@@ -35,10 +35,21 @@ function SubirNoticias() {
             });
 
             if (response.ok) {
-                alert('Noticia actualizada con éxito');
                 setIsEditing(false);
                 setEditingId(null);
                 cargarPublicaciones();
+                toast.success('Noticia actualizado', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
                 alert('Error al actualizar la noticia');
             }
@@ -78,13 +89,46 @@ function SubirNoticias() {
             });
 
             if (response.ok) {
-                alert('Publicación subida con éxito');
                 //navigate('/');
+                toast.success('Noticia agregada', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al subir la noticia');
+                toast.error('Error al agregar noticia', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -157,50 +201,51 @@ function SubirNoticias() {
                         <div class="section-two-dashboard">
                             <div className='section-sub-two-dashboard-usuarios'>
 
-
-                                <div>
-                                    <form onSubmit={handleSubmit} encType="multipart/form-data">
-                                        <div>
-                                            <label htmlFor="titulo">Título</label>
-                                            <textarea
-                                                id="titulo"
+                                <div className="content">
+                                    <form className="user-form" onSubmit={handleSubmit} encType="multipart/form-data">
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="text"
+                                                placeholder="Título"
                                                 value={titulo}
                                                 onChange={(e) => setTitulo(e.target.value)}
+                                                required
                                             />
                                         </div>
-                                        <div>
-                                            <label htmlFor="imagen">Imagen</label>
+                                        <div className='input-box-dashboard'>
                                             <input
                                                 type="file"
-                                                id="imagen"
+                                                placeholder="Imagen"
                                                 accept="image/*"
                                                 onChange={handleImageChange}
+                                                required
                                             />
                                         </div>
-                                        <div>
-                                            <label htmlFor="comentario">Descripción</label>
-                                            <textarea
-                                                id="comentario"
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="text"
+                                                placeholder="Descripción"
                                                 value={comentario}
                                                 onChange={(e) => setComentario(e.target.value)}
+                                                required
                                             />
                                         </div>
-                                        <button type="submit">Agregar noticia</button>
                                         {isEditing ? (
-                                            <button type="button" onClick={saveChanges}>
-                                                Guardar Cambios
+                                            <button className='btn-dashboard-usuarios-guardar' type="button" onClick={saveChanges}>
+                                                Guardar cambios
                                             </button>
                                         ) : (
-                                            <button type="submit">Agregar Noticia</button>
+                                            <button className='btn-dashboard-usuarios-agregar' type="submit">Agregar noticia</button>
                                         )}
                                     </form>
-                                    <table>
+                                    <table className="user-table">
                                         <thead>
                                             <tr>
                                                 <th>Título</th>
                                                 <th>Descripción</th>
                                                 <th>Fecha de publicación</th>
                                                 <th>Imagen</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -209,15 +254,13 @@ function SubirNoticias() {
                                                     <td>{publicacion.titulo}</td>
                                                     <td>{publicacion.comentario}</td>
                                                     <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>
-                                                    <p>Creado por: {publicacion.nombre_usuario}</p>
                                                     <td>
                                                         {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
                                                         <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
                                                     </td>
                                                     <td>
-                                                        <button onClick={() => eliminarNoticia(publicacion.id)}>Eliminar</button>
-                                                        <button onClick={() => startEdit(publicacion)}>Editar</button>
-                                                        <button onClick={() => eliminarNoticia(publicacion.id)}>Eliminar</button>
+                                                        <button className="btn-dashboard-usuarios-editar" onClick={() => startEdit(publicacion)}>Editar</button>
+                                                        <button className="btn-dashboard-usuarios-eliminar" onClick={() => eliminarNoticia(publicacion.id)}>Eliminar</button>
                                                     </td>
                                                 </tr>
                                             ))}

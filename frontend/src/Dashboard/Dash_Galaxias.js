@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Aside from '../Componentes/Aside';
 
 function SubirGalaxias() {
+    const [nombre_galaxia, setNombre] = useState('');
     const [comentario, setComentario] = useState('');
     const [imagen, setImagen] = useState(null);
     const [publicaciones, setPublicaciones] = useState([]);
@@ -15,15 +16,15 @@ function SubirGalaxias() {
         setIsEditing(true);
         setEditingId(galaxia.id);
         setComentario(galaxia.comentario);
+        setNombre(galaxia.nombre_galaxia);
         // No se puede establecer la imagen directamente
     };
 
     const saveChanges = async () => {
         const formData = new FormData();
+        formData.append('nombre_galaxia', nombre_galaxia);
         formData.append('comentario', comentario);
-        if (imagen) {
-            formData.append('imagen', imagen);
-        }
+        if (imagen) formData.append('imagen', imagen);
 
         try {
             const response = await fetch(`http://localhost:8081/actualizar-galaxia/${editingId}`, {
@@ -32,15 +33,52 @@ function SubirGalaxias() {
             });
 
             if (response.ok) {
-                alert('Galaxia actualizada con éxito');
                 setIsEditing(false);
                 setEditingId(null);
+                // Limpiar los campos
+                setNombre('');
+                setComentario('');
+                setImagen(null);
                 cargarPublicaciones();
+                toast.success('Galaxia actualizada', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al actualizar la galaxia');
+                toast.error('Error al actualizar galaxia', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -52,13 +90,46 @@ function SubirGalaxias() {
             });
 
             if (response.ok) {
-                alert('Galaxia eliminada con éxito');
                 cargarPublicaciones();
+                toast.success('Galaxia eliminada', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al eliminar la galaxia');
+                toast.error('Error al eliminar galaxia', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -77,10 +148,32 @@ function SubirGalaxias() {
                 const data = await response.json();
                 setPublicaciones(data);
             } else {
-                alert('Error al cargar las galaxias');
+                toast.error('Error al cargar galaxias', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -88,11 +181,23 @@ function SubirGalaxias() {
         e.preventDefault();
 
         if (!imagen) {
-            alert('Por favor, selecciona una imagen.');
+            toast.error('Selecciona una imagen', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
             return;
         }
 
         const formData = new FormData();
+        formData.append('nombre_galaxia', nombre_galaxia);
         formData.append('imagen', imagen);
         formData.append('comentario', comentario);
 
@@ -103,13 +208,50 @@ function SubirGalaxias() {
             });
 
             if (response.ok) {
-                alert('Publicación subida con éxito');
-                navigate('/'); // Redirige al inicio o a la página que prefieras
+                // Limpiar los campos
+                setNombre('');
+                setComentario('');
+                setImagen(null);
+                cargarPublicaciones();
+                toast.success('Galaxia agregada', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al subir la galaxia');
+                toast.error('Error al agregar galaxia', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -126,7 +268,7 @@ function SubirGalaxias() {
                 />
 
                 <div className='temp'>
-                    <Aside/>
+                    <Aside />
                     <div className='prueba'>
                         <div class="section-one-dashboard">
                             <div className='section-sub-one'>
@@ -157,9 +299,11 @@ function SubirGalaxias() {
                                     <form className="user-form" onSubmit={handleSubmit} encType="multipart/form-data">
                                         <div className='input-box-dashboard'>
                                             <input
-                                                type="file"
-                                                accept="image/*"
-                                                onChange={handleImageChange}
+                                                type="text"
+                                                placeholder="Nombre"
+                                                value={nombre_galaxia}
+                                                onChange={(e) => setNombre(e.target.value)}
+                                                required
                                             />
                                         </div>
                                         <div className='input-box-dashboard'>
@@ -171,39 +315,49 @@ function SubirGalaxias() {
                                                 required
                                             />
                                         </div>
-                                        <button type="submit">Agregar galaxia</button>
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="file"
+                                                placeholder="Imagen"
+                                                accept="image/*"
+                                                onChange={handleImageChange}
+                                                required
+                                            />
+                                        </div>
+
+                                        {isEditing ? (
+                                            <button className='btn-dashboard-usuarios-guardar' type="button" onClick={saveChanges}>
+                                                Guardar cambios
+                                            </button>
+                                        ) : (
+                                            <button className='btn-dashboard-usuarios-agregar' type="submit">
+                                                Agregar galaxia
+                                            </button>
+                                        )}
                                     </form>
-                                    <table>
+                                    <table className="user-table">
                                         <thead>
                                             <tr>
+                                                <th>Nombre</th>
+                                                <th>Descripción</th>
+                                                <th>Fecha</th>
                                                 <th>Imagen</th>
-                                                <th>Comentario</th>
-                                                <th>Fecha de Publicación</th>
+                                                <th>Acciones</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             {publicaciones.map((galaxia, index) => (
                                                 <tr key={index}>
+                                                    <td>{galaxia.nombre_galaxia}</td>
+                                                    <td>{galaxia.comentario}</td>
+                                                    <td>{new Date(galaxia.fecha_publicacion).toLocaleDateString()}</td>
                                                     <td>
                                                         <img src={`http://localhost:8081/${galaxia.imagen}`} alt="Imagen" style={{ width: '100px' }} />
                                                     </td>
                                                     <td>
-                                                        {isEditing && editingId === galaxia.id ? (
-                                                            <>
-                                                                <textarea
-                                                                    value={comentario}
-                                                                    onChange={(e) => setComentario(e.target.value)}
-                                                                />
-                                                                <button onClick={saveChanges}>Guardar Cambios</button>
-                                                            </>
-                                                        ) : (
-                                                            <>
-                                                                <button onClick={() => startEdit(galaxia)}>Editar</button>
-                                                                <button onClick={() => handleDelete(galaxia.id)}>Eliminar</button>
-                                                            </>
-                                                        )}
+                                                        <button className="btn-dashboard-usuarios-editar" onClick={() => startEdit(galaxia)}>Editar</button>
+                                                        <button className="btn-dashboard-usuarios-eliminar" onClick={() => handleDelete(galaxia.id)}>Eliminar</button>
                                                     </td>
-                                                    <td>{new Date(galaxia.fecha_publicacion).toLocaleDateString()}</td>
                                                 </tr>
                                             ))}
                                         </tbody>

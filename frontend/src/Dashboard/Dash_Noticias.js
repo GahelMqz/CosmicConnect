@@ -37,8 +37,11 @@ function SubirNoticias() {
             if (response.ok) {
                 setIsEditing(false);
                 setEditingId(null);
+                setTitulo('');
+                setComentario('');
+                setImagen(null);
                 cargarPublicaciones();
-                toast.success('Noticia actualizado', {
+                toast.success('Noticia actualizada', {
                     style: {
                         background: '#74C88A',
                         color: '#075233',
@@ -51,10 +54,32 @@ function SubirNoticias() {
                     },
                 });
             } else {
-                alert('Error al actualizar la noticia');
+                toast.error('Error al actualizar la noticia', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -65,17 +90,50 @@ function SubirNoticias() {
                 const data = await response.json();
                 setPublicaciones(data);
             } else {
-                alert('Error al cargar las noticias');
+                toast.error('Error al cargar las noticias', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!imagen) {
-            alert('Por favor, selecciona una imagen.');
+            toast.error('Selecciona una imagen', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
             return;
         }
         const formData = new FormData();
@@ -89,7 +147,11 @@ function SubirNoticias() {
             });
 
             if (response.ok) {
-                //navigate('/');
+                // Limpiar los campos
+                setTitulo('');
+                setComentario('');
+                setImagen(null);
+                cargarPublicaciones();
                 toast.success('Noticia agregada', {
                     style: {
                         background: '#74C88A',
@@ -104,17 +166,17 @@ function SubirNoticias() {
                 });
             } else {
                 toast.error('Error al agregar noticia', {
-                style: {
-                    background: '#c87474',
-                    color: '#4B0D0D',
-                    borderRadius: '40px',
-                    fontSize: '30px'
-                },
-                iconTheme: {
-                    primary: '#4B0D0D',
-                    secondary: '#c87474',
-                },
-            });
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
             toast.error('Error en el servidor', {
@@ -146,13 +208,46 @@ function SubirNoticias() {
             });
 
             if (response.ok) {
-                alert('Noticia eliminada exitosamente');
+                toast.success('Noticia eliminada', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
                 cargarPublicaciones(); // Vuelve a cargar las noticias después de eliminar una
             } else {
-                alert('Error al eliminar la noticia');
+                toast.error('Error al eliminar la noticia', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 

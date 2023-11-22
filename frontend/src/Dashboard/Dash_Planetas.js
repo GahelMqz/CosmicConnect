@@ -4,6 +4,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import Aside from '../Componentes/Aside';
 
 function SubirPlanetas() {
+    const [nombre_planeta, setNombre] = useState('');
     const [comentario, setComentario] = useState('');
     const [imagen, setImagen] = useState(null);
     const [publicaciones, setPublicaciones] = useState([]);
@@ -16,11 +17,13 @@ function SubirPlanetas() {
         setIsEditing(true);
         setEditingId(planeta.id);
         setComentario(planeta.comentario);
+        setNombre(planeta.nombre_planeta);
         // No puedes establecer la imagen aquí directamente ya que es un archivo
     };
 
     const saveChanges = async () => {
         const formData = new FormData();
+        formData.append('nombre_planeta', nombre_planeta);
         formData.append('comentario', comentario);
         if (imagen) formData.append('imagen', imagen);
 
@@ -31,15 +34,52 @@ function SubirPlanetas() {
             });
 
             if (response.ok) {
-                alert('Planeta actualizado con éxito');
                 setIsEditing(false);
                 setEditingId(null);
+                // Limpiar los campos
+                setNombre('');
+                setComentario('');
+                setImagen(null);
                 cargarPublicaciones();
+                toast.success('Planeta actualizado', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al actualizar el planeta');
+                toast.error('Error al actualizar planeta', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -50,13 +90,46 @@ function SubirPlanetas() {
             });
 
             if (response.ok) {
-                alert('Planeta eliminado con éxito');
                 cargarPublicaciones();
+                toast.success('Planeta eliminado', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al eliminar el planeta');
+                toast.error('Error al eliminar planeta', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -75,10 +148,32 @@ function SubirPlanetas() {
                 const data = await response.json();
                 setPublicaciones(data);
             } else {
-                alert('Error al cargar los planetas');
+                toast.error('Error al cargar los planetas', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -86,11 +181,23 @@ function SubirPlanetas() {
         e.preventDefault();
 
         if (!imagen) {
-            alert('Por favor, selecciona una imagen.');
+            toast.error('Selecciona una imagen', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
             return;
         }
 
         const formData = new FormData();
+        formData.append('nombre_planeta', nombre_planeta);
         formData.append('imagen', imagen);
         formData.append('comentario', comentario);
 
@@ -101,13 +208,50 @@ function SubirPlanetas() {
             });
 
             if (response.ok) {
-                alert('Publicación subida con éxito');
-                navigate('/'); // Redirige al inicio o a la página que prefieras
+                // Limpiar los campos
+                setNombre('');
+                setComentario('');
+                setImagen(null);
+                cargarPublicaciones();
+                toast.success('Planeta agregado', {
+                    style: {
+                        background: '#74C88A',
+                        color: '#075233',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#075233',
+                        secondary: '#74C88A',
+                    },
+                });
             } else {
-                alert('Error al subir el planeta');
+                toast.error('Error al agregar planeta', {
+                    style: {
+                        background: '#c87474',
+                        color: '#4B0D0D',
+                        borderRadius: '40px',
+                        fontSize: '30px'
+                    },
+                    iconTheme: {
+                        primary: '#4B0D0D',
+                        secondary: '#c87474',
+                    },
+                });
             }
         } catch (error) {
-            alert('Error en el servidor');
+            toast.error('Error en el servidor', {
+                style: {
+                    background: '#c87474',
+                    color: '#4B0D0D',
+                    borderRadius: '40px',
+                    fontSize: '30px'
+                },
+                iconTheme: {
+                    primary: '#4B0D0D',
+                    secondary: '#c87474',
+                },
+            });
         }
     };
 
@@ -155,10 +299,10 @@ function SubirPlanetas() {
                                     <form className="user-form" onSubmit={handleSubmit} encType="multipart/form-data">
                                         <div className='input-box-dashboard'>
                                             <input
-                                                type="file"
-                                                placeholder="Imagen"
-                                                accept="image/*"
-                                                onChange={handleImageChange}
+                                                type="text"
+                                                placeholder="Nombre"
+                                                value={nombre_planeta}
+                                                onChange={(e) => setNombre(e.target.value)}
                                                 required
                                             />
                                         </div>
@@ -171,6 +315,16 @@ function SubirPlanetas() {
                                                 required
                                             />
                                         </div>
+                                        <div className='input-box-dashboard'>
+                                            <input
+                                                type="file"
+                                                placeholder="Imagen"
+                                                accept="image/*"
+                                                onChange={handleImageChange}
+                                                required
+                                            />
+                                        </div>
+
                                         {isEditing ? (
                                             <button className='btn-dashboard-usuarios-guardar' type="button" onClick={saveChanges}>Guardar Cambios</button>
                                         ) : (
@@ -191,7 +345,7 @@ function SubirPlanetas() {
                                         <tbody>
                                             {publicaciones.map((planeta, index) => (
                                                 <tr key={index}>
-                                                    <td>Nombre</td>
+                                                    <td>{planeta.nombre_planeta}</td>
                                                     <td>{planeta.comentario}</td>
                                                     <td>{new Date(planeta.fecha_publicacion).toLocaleDateString()}</td>
                                                     <td>

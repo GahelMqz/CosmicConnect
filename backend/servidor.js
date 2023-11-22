@@ -67,6 +67,7 @@ app.get('/obtener-publicaciones', (req, res) => {
 
 app.put('/actualizar-planeta/:id', upload.single('imagen'), (req, res) => {
     const idPlaneta = req.params.id;
+    const nombre_planeta = req.body.nombre_planeta;
     const comentario = req.body.comentario;
     let imagenUrl = req.file ? req.file.path : null;
 
@@ -75,12 +76,12 @@ app.put('/actualizar-planeta/:id', upload.single('imagen'), (req, res) => {
 
     if (imagenUrl) {
         // Actualizar tanto la imagen como el comentario
-        query = 'UPDATE planetas SET comentario = ?, imagen = ? WHERE id = ?';
-        parametros = [comentario, imagenUrl, idPlaneta];
+        query = 'UPDATE planetas SET nombre_planeta = ?, comentario = ?, imagen = ? WHERE id = ?';
+        parametros = [nombre_planeta, comentario, imagenUrl, idPlaneta];
     } else {
         // Actualizar solo el comentario
-        query = 'UPDATE planetas SET comentario = ? WHERE id = ?';
-        parametros = [comentario, idPlaneta];
+        query = 'UPDATE planetas SET nombre_planeta = ?, comentario = ? WHERE id = ?';
+        parametros = [nombre_planeta, comentario, idPlaneta];
     }
 
     conexion.query(query, parametros, (err, results) => {
@@ -194,12 +195,13 @@ function actualizarNoticia(id, titulo, comentario, imagen, res) {
 
 app.post('/subir-planeta', upload.single('imagen'), (req, res) => {
 
-    const comentario = req.body.comentario;
+    const nombre_planeta = req.body.nombre_planeta;
     const imagenUrl = req.file.path
+    const comentario = req.body.comentario;
 
     // Insertar en la base de datos
-    const query = 'INSERT INTO planetas (imagen, comentario) VALUES (?, ?)';
-    conexion.query(query, [imagenUrl, comentario], (err, results) => {
+    const query = 'INSERT INTO planetas (nombre_planeta, imagen, comentario) VALUES (?, ?, ?)';
+    conexion.query(query, [nombre_planeta, imagenUrl, comentario], (err, results) => {
         if (err) {
             res.status(500).send('Error en el servidor: ' + err.message);
             return;
@@ -222,17 +224,13 @@ app.get('/obtener-planetas', (req, res) => {
 
 
 // Galaxias 
-
-
-
 app.post('/subir-galaxia', upload.single('imagen'), (req, res) => {
-
-    const comentario = req.body.comentario;
+    const nombre_galaxia = req.body.nombre_galaxia;
     const imagenUrl = req.file.path
+    const comentario = req.body.comentario;
 
-    // Insertar en la base de datos
-    const query = 'INSERT INTO galaxias (imagen, comentario) VALUES (?, ?)';
-    conexion.query(query, [imagenUrl, comentario], (err, results) => {
+    const query = 'INSERT INTO galaxias (nombre_galaxia, imagen, comentario) VALUES (?, ?, ?)';
+    conexion.query(query, [nombre_galaxia, imagenUrl, comentario], (err, results) => {
         if (err) {
             res.status(500).send('Error en el servidor: ' + err.message);
             return;
@@ -423,18 +421,28 @@ app.delete('/eliminar-publicacion/:id', (req, res) => {
 
 app.put('/actualizar-galaxia/:id', upload.single('imagen'), (req, res) => {
     const idGalaxia = req.params.id;
+    const nombre_galaxia = req.body.nombre_galaxia;
     const comentario = req.body.comentario;
     let imagenUrl = req.file ? req.file.path : null;
 
     let query;
     let parametros;
 
-    if (imagenUrl) {
-        query = 'UPDATE galaxias SET comentario = ?, imagen = ? WHERE id = ?';
-        parametros = [comentario, imagenUrl, idGalaxia];
+    /*if (imagenUrl) {
+        query = 'UPDATE galaxias SET nombre_galaxia = ?, comentario = ?, imagen = ? WHERE id = ?';
+        parametros = [nombre_galaxia, comentario, imagenUrl, idGalaxia];
     } else {
-        query = 'UPDATE galaxias SET comentario = ? WHERE id = ?';
-        parametros = [comentario, idGalaxia];
+        query = 'UPDATE galaxias SET nombre_galaxia = ?, comentario = ? WHERE id = ?';
+        parametros = [nombre_galaxia, comentario, idGalaxia];
+    }*/
+    if (imagenUrl) {
+        // Actualizar tanto la imagen como el comentario
+        query = 'UPDATE galaxias SET nombre_galaxia = ?, comentario = ?, imagen = ? WHERE id = ?';
+        parametros = [nombre_galaxia, comentario, imagenUrl, idGalaxia];
+    } else {
+        // Actualizar solo el comentario
+        query = 'UPDATE galaxias SET nombre_galaxia = ?, comentario = ? WHERE id = ?';
+        parametros = [nombre_galaxia, comentario, idGalaxia];
     }
 
     conexion.query(query, parametros, (err, results) => {

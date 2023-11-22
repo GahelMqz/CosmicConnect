@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../Componentes/Header';
+import '../css/subirpublicacion.css';
 
 function SubirPublicacion() {
     const [comentario, setComentario] = useState('');
@@ -67,10 +68,10 @@ function SubirPublicacion() {
     return (
         <>
             <body>
-                <Header/>
-                <div>
-                    <form onSubmit={handleSubmit} encType="multipart/form-data">
-                        <div>
+                <Header />
+                <div className="container">
+                    <form onSubmit={handleSubmit} encType="multipart/form-data" className="form-container">
+                        <div className="form-group">
                             <label htmlFor="imagen">Imagen:</label>
                             <input
                                 type="file"
@@ -79,7 +80,7 @@ function SubirPublicacion() {
                                 onChange={handleImageChange}
                             />
                         </div>
-                        <div>
+                        <div className="form-group">
                             <label htmlFor="comentario">Comentario:</label>
                             <textarea
                                 id="comentario"
@@ -87,9 +88,9 @@ function SubirPublicacion() {
                                 onChange={(e) => setComentario(e.target.value)}
                             />
                         </div>
-                        <button type="submit">Subir Publicación</button>
+                        <button type="submit" className="submit-btn">Subir Publicación</button>
                     </form>
-                    <table>
+                    <table className="publication-table">
                         <thead>
                             <tr>
                                 <th>Imagen</th>
@@ -101,8 +102,7 @@ function SubirPublicacion() {
                             {publicaciones.map((publicacion, index) => (
                                 <tr key={index}>
                                     <td>
-                                        {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
-                                        <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
+                                        <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" className="publication-image" />
                                     </td>
                                     <td>{publicacion.comentario}</td>
                                     <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Componentes/Header';
 
 function SubirPublicacion() {
     const [comentario, setComentario] = useState('');
@@ -64,49 +65,54 @@ function SubirPublicacion() {
     };
 
     return (
-        <div>
-            <form onSubmit={handleSubmit} encType="multipart/form-data">
+        <>
+            <body>
+                <Header/>
                 <div>
-                    <label htmlFor="imagen">Imagen:</label>
-                    <input
-                        type="file"
-                        id="imagen"
-                        accept="image/*"
-                        onChange={handleImageChange}
-                    />
+                    <form onSubmit={handleSubmit} encType="multipart/form-data">
+                        <div>
+                            <label htmlFor="imagen">Imagen:</label>
+                            <input
+                                type="file"
+                                id="imagen"
+                                accept="image/*"
+                                onChange={handleImageChange}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="comentario">Comentario:</label>
+                            <textarea
+                                id="comentario"
+                                value={comentario}
+                                onChange={(e) => setComentario(e.target.value)}
+                            />
+                        </div>
+                        <button type="submit">Subir Publicación</button>
+                    </form>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Comentario</th>
+                                <th>Fecha de Publicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {publicaciones.map((publicacion, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
+                                        <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
+                                    </td>
+                                    <td>{publicacion.comentario}</td>
+                                    <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
                 </div>
-                <div>
-                    <label htmlFor="comentario">Comentario:</label>
-                    <textarea
-                        id="comentario"
-                        value={comentario}
-                        onChange={(e) => setComentario(e.target.value)}
-                    />
-                </div>
-                <button type="submit">Subir Publicación</button>
-            </form>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Comentario</th>
-                        <th>Fecha de Publicación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {publicaciones.map((publicacion, index) => (
-                        <tr key={index}>
-                            <td>
-                                {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
-                                <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
-                            </td>
-                            <td>{publicacion.comentario}</td>
-                            <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+            </body>
+        </>
     );
 }
 

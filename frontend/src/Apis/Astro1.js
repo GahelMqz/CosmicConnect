@@ -31,18 +31,17 @@ const Api_1 = () => {
     <div>
       {starData && starData.length > 0 ? (
         <div>
-          <h2>Star Details</h2>
           <ul>
             {starData.map((star, index) => (
-              <li key={index}>
-                <strong>Name:</strong> {star.name}<br />
-                <strong>Constellation:</strong> {star.constellation}<br />
-                <strong>Right Ascension:</strong> {star.right_ascension}<br />
-                <strong>Declination:</strong> {star.declination}<br />
-                <strong>Apparent Magnitude:</strong> {star.apparent_magnitude}<br />
-                <strong>Absolute Magnitude:</strong> {star.absolute_magnitude}<br />
-                <strong>Distance (light years):</strong> {star.distance_light_year}<br />
-                <strong>Spectral Class:</strong> {star.spectral_class}<br />
+              <li className='p-stars' key={index}>
+                <strong>Nombre:</strong> {star.name}<br />
+                <strong>Constelación:</strong> {star.constellation}<br />
+                <strong>Coordenadas:</strong> {star.right_ascension}<br />
+                <strong>Declinación:</strong> {star.declination}<br />
+                <strong>Magnitud aparente:</strong> {star.apparent_magnitude}<br />
+                <strong>Magnitud absoluta:</strong> {star.absolute_magnitude}<br />
+                <strong>Distancia (años luz):</strong> {star.distance_light_year}<br />
+                <strong>Clasificación estelar:</strong> {star.spectral_class}<br />
                 <br />
               </li>
             ))}

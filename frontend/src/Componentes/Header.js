@@ -16,12 +16,12 @@ function Header() {
             <ul className="nav-links">
                 <Link to="/"><img className='logo-header' src={require("../imgs/logo.png")} alt="Logo" /></Link>
                 <li className="center"><Link to="/">Despierta tu curiosidad</Link></li>
-                <li className="center"><Link to="/nasa">Cosmos</Link></li>
+                <li className="center"><Link to="/nasa">Apis</Link></li>
                 <li className="center"><Link to="/publicacion">Comparte tus imagenes</Link></li>
                 <li className="center"><Link to="/noticias">Noticias</Link></li>
                 <li className="center"><Link to="/planetas">Planetas</Link></li>
                 <li className="center"><Link to="/galaxias">Galaxias</Link></li>
-                <li className="center"><Link to="/nosotros">Nosotros</Link></li>
+                
                 <li className="center"><Link to="/contactanos">Contáctanos</Link></li>
                 <li className="center"><Link to="/dashboard">Dashboard</Link></li>
 

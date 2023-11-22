@@ -33,21 +33,6 @@ function Contactanos() {
       <body>
         <Header />
 
-        <nav style={{ background: "lightgray" }}>
-          <ol className="breadcrumb">
-            <li className="breadcrumb-item">
-              <a href="/">Home</a>
-            </li>
-            <li
-              className="breadcrumb-item active"
-              style={{ fontSize: "medium" }}
-              aria-current="page"
-            >
-              Contactanos
-            </li>
-          </ol>
-        </nav>
-
         <div className="section-one">
           <h1>Contáctanos</h1>
           <p className="p-contactanos">¿Tienes alguna pregunta o comentario?</p>

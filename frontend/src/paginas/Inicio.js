@@ -9,17 +9,13 @@ function Inicio() {
         <>
             <body >
                 <Header />
-
-                
-
-
                 <div class="section-one">
                     <div className='section-sub-one'>
                         <div className='section-mini-one'>
                             <h1>¡Descubre el Universo en CosmiConnect!</h1>
                             <p className='p-left'>Descubre el espacio como nunca antes. Horóscopos, planetas, estrellas y satélites, todo en un solo lugar. Únete a nosotros y despierta tu pasión por el universo.</p>
                             <div className='container-btn-home'>
-                                <Link to="/login"><button type="submit" className="btn-login">
+                                <Link to="/nasa"><button type="submit" className="btn-login">
                                     ¡Comienza ahora!
                                 </button>
                                 </Link>
@@ -41,7 +37,7 @@ function Inicio() {
                             <h1>¡Descubre el Universo en CosmiConnect!</h1>
                             <p className='p-right'>Descubre el espacio como nunca antes. Horóscopos, planetas, estrellas y satélites, todo en un solo lugar. Únete a nosotros y despierta tu pasión por el universo.</p>
                             <div className='container-btn-home'>
-                                <Link to="/login"><button type="submit" className="btn-login">
+                                <Link to="/publicacion"><button type="submit" className="btn-login">
                                     ¡Comienza ahora!
                                 </button>
                                 </Link>

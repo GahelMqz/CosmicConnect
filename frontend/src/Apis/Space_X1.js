@@ -24,20 +24,19 @@ const SpaceXLaunches = () => {
 
   return (
     <div>
-      <h2>SpaceX Launches</h2>
-      <button onClick={toggleInfoVisibility}>
-        {isInfoVisible ? 'Hide Info' : 'Show Info'}
+      <button className='btn-dashboard-usuarios-agregar' onClick={toggleInfoVisibility}>
+        {isInfoVisible ? 'Ocultar' : 'Mostrar'}
       </button>
       {isInfoVisible && (
         <ul>
           {launches.map((launch, index) => (
-            <li key={index}>
-              <strong>Flight Number:</strong> {launch.flight_number}<br />
-              <strong>Mission Name:</strong> {launch.name}<br />
-              <strong>Launch Date:</strong> {new Date(launch.date_utc).toLocaleString()}<br />
-              <strong>Rocket:</strong> {launch.rocket}<br />
-              <strong>Launch Site:</strong> {launch.launchpad}<br />
-              <strong>Details:</strong> {launch.details}<br />
+            <li className='p-stars' key={index}>
+              <strong>Número de vuelo:</strong> {launch.flight_number}<br />
+              <strong>Misión:</strong> {launch.name}<br />
+              <strong>Fecha de lanzamiento:</strong> {new Date(launch.date_utc).toLocaleString()}<br />
+              <strong>Cohete:</strong> {launch.rocket}<br />
+              <strong>Lugar de lanzamiento:</strong> {launch.launchpad}<br />
+              <strong>Detalles:</strong> {launch.details}<br />
               <br />
             </li>
           ))}

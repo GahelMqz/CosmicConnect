@@ -23,14 +23,13 @@ const Apod = () => {
   return (
     <div>
       {apodData ? (
-        <div>
-          <h2>Astronomy Picture of the Day</h2>
-          <h3>{apodData.title}</h3>
-          <img src={apodData.url} alt={apodData.title} />
-          <p>{apodData.explanation}</p>
+        <div className='p-stars'>
+          <h2>{apodData.title}</h2>
+          <img src={apodData.url} alt={apodData.title} style={{ width: '400px' }}/>
+          <p className='description'>{apodData.explanation}</p>
         </div>
       ) : (
-        <p>Loading Astronomy Picture of the Day...</p>
+        <p>Cargando imagen...</p>
       )}
     </div>
   );

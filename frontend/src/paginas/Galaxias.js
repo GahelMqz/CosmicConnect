@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Header from '../Componentes/Header';
 
 function Galaxias() {
     const [comentario, setComentario] = useState('');
@@ -29,31 +30,36 @@ function Galaxias() {
         }
     };
 
-    
+
     return (
-        <div>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Imagen</th>
-                        <th>Descripcion</th>
-                        <th>Fecha de Publicación</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {publicaciones.map((publicacion, index) => (
-                        <tr key={index}>
-                            <td>
-                                {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
-                                <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
-                            </td>
-                            <td>{publicacion.comentario}</td>
-                            <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
+        <>
+            <body>
+                <div>
+                    <Header />
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Imagen</th>
+                                <th>Descripcion</th>
+                                <th>Fecha de Publicación</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {publicaciones.map((publicacion, index) => (
+                                <tr key={index}>
+                                    <td>
+                                        {/* Asegúrate de ajustar la ruta de la imagen según tu configuración */}
+                                        <img src={`http://localhost:8081/${publicacion.imagen}`} alt="Imagen" style={{ width: '100px' }} />
+                                    </td>
+                                    <td>{publicacion.comentario}</td>
+                                    <td>{new Date(publicacion.fecha_publicacion).toLocaleDateString()}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </body>
+        </>
     );
 }
 

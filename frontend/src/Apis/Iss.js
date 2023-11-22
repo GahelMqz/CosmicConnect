@@ -20,16 +20,15 @@ const ISSLocation = () => {
   return (
     <div>
       {issData ? (
-        <div>
-          <h2>ISS Location</h2>
-          <p>Latitude: {issData.iss_position.latitude}</p>
-          <p>Longitude: {issData.iss_position.longitude}</p>
-          <p>Speed: {issData.velocity} m/s</p>
-          <p>Altitude: {issData.iss_position.altitude} km</p>
-          <p>Timestamp: {new Date(issData.timestamp * 1000).toLocaleTimeString()}</p>
+        <div className='p-stars'>
+          <strong className='strong-iss'>Latitud: </strong>{issData.iss_position.latitude}<br />
+          <strong className='strong-iss'>Longitud: </strong>{issData.iss_position.longitude}<br />
+          <strong className='strong-iss'>Velocidad: </strong>{issData.velocity} m/s<br />
+          <strong className='strong-iss'>Altitud: </strong>{issData.iss_position.altitude} km<br />
+          <strong className='strong-iss'>Marca de tiempo: </strong>{new Date(issData.timestamp * 1000).toLocaleTimeString()}
         </div>
       ) : (
-        <p>Loading ISS data...</p>
+        <p>Cargando información...</p>
       )}
     </div>
   );

@@ -20,14 +20,13 @@ const SpaceXData = () => {
   return (
     <div>
       {data ? (
-        <div>
-          <h2>SpaceX Latest Launch</h2>
-          <p>Name: {data.name}</p>
-          <p>Date: {data.date}</p>
+        <div className='p-stars'>
+          <p>Nombre: {data.name}</p>
+          <p>Fecha: {data.date}</p>
           {/* Agrega más propiedades según sea necesario */}
         </div>
       ) : (
-        <p>Loading SpaceX data...</p>
+        <p>Cargando información...</p>
       )}
     </div>
   );
